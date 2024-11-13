@@ -1,0 +1,55 @@
+import random
+
+# Functie om een compatibiliteitsscore te berekenen op basis van overeenkomende letters
+def calculate_score(name1, name2):
+    name1 = name1.lower()
+    name2 = name2.lower()
+    
+    # Bereken de overeenkomende letters
+    common_letters = set(name1) & set(name2)
+    score = (len(common_letters) * 10) + random.randint(0, 50)
+    return min(score, 100)  # Zorg ervoor dat de score niet hoger dan 100 is
+
+# Functie om een paar leuke karaktereigenschappen aan te geven
+def random_traits():
+    traits = [
+        "Passioneel", "Grappig", "Zorgzaam", "Dromerig", 
+        "Avontuurlijk", "Mysterieus", "Romantisch", "Betrouwbaar",
+        "Creatief", "Loyaal", "Charmant", "Enthousiast"
+    ]
+    return random.sample(traits, 3)
+
+# Hoofd Love Tester functie
+def love_tester():
+    print("💖 Welkom bij de Ultimate Love Tester! 💖")
+    while True:
+        name1 = input("\nVoer de naam van de eerste persoon in: ")
+        name2 = input("Voer de naam van de tweede persoon in: ")
+        
+        # Bereken de compatibiliteitsscore
+        score = calculate_score(name1, name2)
+        traits = random_traits()
+        
+        # Toon de resultaten
+        print(f"\n❤️ {name1} en {name2} hebben een compatibiliteitsscore van {score}%!")
+        print(f"✨ {name1} is {traits[0]}, terwijl {name2} {traits[1]} is.")
+        print(f"💫 Samen zijn ze {traits[2]}!")
+        
+        # Advies op basis van score
+        if score > 85:
+            print("😍 Jullie zijn bijna perfect voor elkaar!")
+        elif score > 60:
+            print("😊 Er is een goede kans op een mooie connectie!")
+        elif score > 30:
+            print("😐 Er is wat werk nodig, maar het kan slagen!")
+        else:
+            print("😕 Misschien passen jullie beter als vrienden.")
+        
+        # Vraag of de gebruiker opnieuw wil proberen
+        retry = input("\nWil je nog een test doen? (ja/nee): ").strip().lower()
+        if retry != 'ja':
+            print("Bedankt voor het spelen van de Ultimate Love Tester! 💖")
+            break
+
+if __name__ == "__main__":
+    love_tester()
